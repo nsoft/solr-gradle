@@ -1,3 +1,18 @@
+/*
+ * Copyright 2016 Needham Software LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.needhamsoftware.gradle.solr
 
 import org.apache.solr.cloud.ZkCLI
@@ -17,20 +32,19 @@ class SolrGradlePlugin implements Plugin<Project> {
     // Add a task that uses the configuration
     //noinspection GroovyAssignabilityCheck
     project.task('upconfig', {group 'solr'}) << {
-      ZkCLI.main('-zkhost', project.solr.zkHost+':'+project.solr.zkPort, '-cmd',
+      ZkCLI.main('-zkhost', project.solr.zkHost, '-cmd',
           'upconfig', '-confname', project.solr.confName, '-confdir', project.file(project.solr.confDir).toString() )
     }
     //noinspection GroovyAssignabilityCheck
     project.task('downconfig', {group 'solr'}) << {
-      ZkCLI.main('-zkhost', project.solr.zkHost+':'+project.solr.zkPort, '-cmd',
+      ZkCLI.main('-zkhost', project.solr.zkHost, '-cmd',
           'downconfig', '-confname', project.solr.confName, '-confdir', project.file(project.solr.confDir).toString() )
     }
   }
 }
 
 class SolrGradleExtension {
-  def String zkHost = 'localhost'
-  def String zkPort = '9983'
+  def String zkHost = 'localhost:9983'
   def String confName = 'myConfig'
   def String confDir = 'src/main/solr/myConfig'
 }

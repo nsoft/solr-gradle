@@ -9,8 +9,7 @@ https://plugins.gradle.org/plugin/com.needhamsoftware.solr-gradle
 The plugin comes pre-configured with defaults that look like this
 
     solr {
-      zkHost '54.211.223.251'
-      zkPort '9983'
+      zkHost 'localhost:9983'
       confName 'myConfig'
       confDir 'src/main/solr/myConfig'
     }
