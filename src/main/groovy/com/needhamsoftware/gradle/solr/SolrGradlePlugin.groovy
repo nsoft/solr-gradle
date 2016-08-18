@@ -27,19 +27,24 @@ import org.gradle.api.Project;
 
 class SolrGradlePlugin implements Plugin<Project> {
   void apply(Project project) {
-    // Add the 'greeting' extension object
     project.extensions.create('solr', SolrGradleExtension)
-    // Add a task that uses the configuration
+
+    //// UPCONFIG ////
+    
     //noinspection GroovyAssignabilityCheck
     project.task('upconfig', {group 'solr'}) << {
       ZkCLI.main('-zkhost', project.solr.zkHost, '-cmd',
           'upconfig', '-confname', project.solr.confName, '-confdir', project.file(project.solr.confDir).toString() )
     }
+
+    //// DOWNCONFIG ////
+
     //noinspection GroovyAssignabilityCheck
     project.task('downconfig', {group 'solr'}) << {
       ZkCLI.main('-zkhost', project.solr.zkHost, '-cmd',
           'downconfig', '-confname', project.solr.confName, '-confdir', project.file(project.solr.confDir).toString() )
     }
+    
   }
 }
 
