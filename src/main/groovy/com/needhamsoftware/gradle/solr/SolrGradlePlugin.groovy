@@ -30,21 +30,27 @@ class SolrGradlePlugin implements Plugin<Project> {
     project.extensions.create('solr', SolrGradleExtension)
 
     //// UPCONFIG ////
-    
+
     //noinspection GroovyAssignabilityCheck
-    project.task('upconfig', {group 'solr'}) << {
-      ZkCLI.main('-zkhost', project.solr.zkHost, '-cmd',
-          'upconfig', '-confname', project.solr.confName, '-confdir', project.file(project.solr.confDir).toString() )
+    project.task('upconfig') {
+      group 'solr'
+      doLast {
+        ZkCLI.main('-zkhost', project.solr.zkHost, '-cmd',
+            'upconfig', '-confname', project.solr.confName, '-confdir', project.file(project.solr.confDir).toString())
+      }
     }
 
     //// DOWNCONFIG ////
 
     //noinspection GroovyAssignabilityCheck
-    project.task('downconfig', {group 'solr'}) << {
-      ZkCLI.main('-zkhost', project.solr.zkHost, '-cmd',
-          'downconfig', '-confname', project.solr.confName, '-confdir', project.file(project.solr.confDir).toString() )
+    project.task('downconfig') {
+      group 'solr'
+      doLast {
+        ZkCLI.main('-zkhost', project.solr.zkHost, '-cmd',
+            'downconfig', '-confname', project.solr.confName, '-confdir', project.file(project.solr.confDir).toString())
+      }
     }
-    
+
   }
 }
 

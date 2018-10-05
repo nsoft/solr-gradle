@@ -6,12 +6,12 @@ buildscript {
     }
   }
   dependencies {
-    classpath "com.gradle.publish:plugin-publish-plugin:0.9.5"
+    classpath "com.gradle.publish:plugin-publish-plugin:0.10.0"
   }
 }
 
 group 'com.needhamsoftware'
-version '1.0.1'
+version '1.0.2'
 
 apply plugin: 'groovy'
 apply plugin: 'maven-publish'
@@ -34,7 +34,7 @@ publishing {
     mavenJava(MavenPublication) {
       groupId 'com.needhamsoftware'
       artifactId 'solr-gradle'
-      version '1.0.1'
+      version '1.0.2'
       from components.java
     }
   }
